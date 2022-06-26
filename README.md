@@ -243,4 +243,6 @@ cat >result.txt
 docker exec -it cttomcat /bin/bash
 # inside the container 
  useradd -m -d /opt/tomcat -U -s /bin/false logwire -p /etc/passwd docker
- docker image tag tomcat:v1 eloutmani23/tomcat
+ docker image tag tomcat:v1 eloutmani23/imgtomcat
+ docker push eloutmani23/imgtomcat
+

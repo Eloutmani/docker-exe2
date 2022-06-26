@@ -1,43 +1,3 @@
-# docker-exe2
-Creez un repo github nommé **docker-exe2**  
-il doit etre public, avec un fichier README.md , un fichier  .gitignore valable pour le langage Python, une License MIT  
-Faites un git clone dans votre directory project local   
-mettre en place dans goland la connexion ssh vers votre VM   
-attention a ne pas oublier le mapping sur le deployment path sur /home/ubuntu/docker-exe2  
-Mettre les commandes de l'exercice suivant dans le fichier README.md
-
-Creez un Dockerfile file dans votre projet sous Goland , qui contient  
-comme image de base fabric8/tomcat-9 de tomcat 9  
-copier le fichier webapp.war dans la directory  de tomcat /opt/tomcat/webapps  
-faire un build d'image avec ce Dockerfile, l'image est nommée tomcat:v1  
-Faire des recherches ( docker history, docker inspect) pour trouver le port utilisé par tomcat dans cette image
-Faire un docker run pour creer un container a partir de l'image tomcat:v1, en background, avec le mapping de port   
-20200: et le port de tomcat dans le container que vous avez trouvé  
-Ouvrir votre navigateur et affiche la page d'accueil de l'application , copiez et collez le texte de cette page dans le fichier result.txt  
-En utilisant portainer , allez a l'interieur du container et creer un utilisateur tomcat nommé logwire et passord: docker  
-mettez cette image dans docker hub sous vtre compte docker hub  
-
-# docker-exe2
-# commandes a executer
-
-```shell
-
-vi Dockerfile
-# put into the Docker file 
-FROM fabric8/tomcat-9
-ADD webapp.war /opt/tomcat/webapps
-
-# end of Dockerfile
-
-docker build -t tomcat:v1 .
-docker images
-docker history tomcat:v1
-docker inspect tomcat:v1
-docker run -d -p 20200:8080 --name cttomcat tomcat:v1
-docker ps -a
-curl http://localhost:20200
-cat >result.txt
-# put into the file
 
 
 <!DOCTYPE html>
@@ -239,8 +199,3 @@ cat >result.txt
     </body>
 
 </html>
-# end of file
-docker exec -it cttomcat /bin/bash
-# inside the container 
- useradd -m -d /opt/tomcat -U -s /bin/false logwire -p /etc/passwd docker
- docker image tag tomcat:v1 eloutmani23/tomcat
